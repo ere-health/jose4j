@@ -52,7 +52,10 @@ public class EllipticCurves
     public static String getName(EllipticCurve curve)
     {
         // equals and hashcode are defined on EllipticCurve so this works
-        return curveToName.get(curve);
+        String s = curveToName.get(curve);
+        // Hack to make sure that brainpool P 256 r1 curve
+        // is returned in case no curve is found
+        return s != null ? s : P_256;
     }
 
     // cofactor h (Thus, for these curves over prime fileds, the cofactor is always h = 1)
